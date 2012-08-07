@@ -34,7 +34,17 @@ end
 j:when(function (...)
   local arguments = {...}
   for i = 1, #arguments do
-    pp(arguments[i])
+    local args = arguments[i]
+    if not (3 == args.n) then
+      print('did not have a length of 3')
+      pp(args)
+      error()
+    end
+    if not (i == args[1]) then
+      print('expected numbers in order but got ' .. arguments[i][0] .. ' at ' .. i)
+      pp(args)
+      error()
+    end
   end
   print('pass')
 end)
